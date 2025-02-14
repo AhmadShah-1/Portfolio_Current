@@ -1,0 +1,217 @@
+{
+  "personal": [
+    {
+      "title": "FitnessWebApplication",
+      "category": "Personal",
+      "images": [],
+      "description": "",
+      "technologies": [],
+      "links": {
+        "https": "//github.com/AhmadShah-1/CS546_Final_Project"
+      },
+      "papers": [],
+      "additionalInfo": {
+        "1": "Fitness Web Application\r\nOverview\r\nThe Fitness Web Application is a comprehensive tool designed to help users set, track, and achieve their fitness goals. The application supports user authentication, goal management, and progress visualization. Built using modern web development technologies, it ensures secure data handling and provides an intuitive user experience.\r\n\r\nFeatures\r\nUser Authentication\r\nSecure Sign-Up & Log-In:\r\nUsers register with a unique username, email, and password.\r\nPasswords are securely hashed using bcrypt to ensure data security.\r\nSession Management:\r\nSessions are managed using express-session to maintain login states.\r\nFitness Goal Management\r\nPersonalized Goals:\r\nSet, view, and track progress for fitness goals.\r\nProgress Tracking:\r\nVisualize achievements over time.\r\nData Storage\r\nMongoDB Database:\r\nUser data and goals are stored securely using the Mongoose ODM.\r\nData validation ensures integrity and consistency.\r\nTools and Libraries Used\r\nBackend\r\nNode.js: Runtime for building the application.\r\nExpress.js: Framework to handle routing and middleware efficiently.\r\nMongoDB: NoSQL database to store user and fitness goal data.\r\nMongoose: Object Data Modeling (ODM) library for MongoDB.\r\nbcrypt: Library for securely hashing user passwords.\r\ndotenv: For managing environment variables securely.\r\nexpress-session: For managing user sessions and login persistence.\r\nFrontend\r\nHTML/CSS: For designing the user interface.\r\nHandlebars.js: Templating engine to render dynamic views.\r\nCustom CSS: Tailored styles for user-friendly interfaces.\r\nDevelopment Tools\r\nnpm: Package manager for installing dependencies.\r\nGit: Version control system for collaboration and code tracking.\r\nInstallation\r\nPrerequisites\r\nNode.js\r\nMongoDB\r\nSteps\r\nClone the Repository:\r\ngit clone https://github.com/AhmadShah-1/CS546_Final_Project.git\r\ncd CS546_Final_Project"
+      }
+    },
+    {
+      "title": "WeatherMachine",
+      "category": "Personal",
+      "images": [
+        "/Assets/Projects/Personal/WeatherMachine/Images/AssembledDevice.JPG",
+        "/Assets/Projects/Personal/WeatherMachine/Images/DataCharts.png",
+        "/Assets/Projects/Personal/WeatherMachine/Images/DeviceAssembly.JPG",
+        "/Assets/Projects/Personal/WeatherMachine/Images/enclosuredrawing-1.png",
+        "/Assets/Projects/Personal/WeatherMachine/Images/img1.JPG",
+        "/Assets/Projects/Personal/WeatherMachine/Images/img2.JPG",
+        "/Assets/Projects/Personal/WeatherMachine/Images/img3.JPG"
+      ],
+      "description": "",
+      "technologies": [],
+      "links": {},
+      "papers": [],
+      "additionalInfo": {
+        "1": "Weather Clock: Environmental Data Logger\r\nProject Overview\r\nThe Weather Clock is a compact, Arduino Nano-based device designed to record, analyze, and display environmental data in real time. The system integrates multiple sensors to measure temperature, humidity, and light intensity, presenting the collected data in both visual (LED-based) and digital formats.\r\n\r\nWith Wi-Fi connectivity, the Weather Clock can transmit recorded data to a remote server for real-time monitoring and analysis, making it suitable for applications such as weather tracking, indoor climate monitoring, and IoT-based automation.\r\n\r\nProject Objectives\r\nThe main focus of this project was to design a low-power, standalone weather monitoring device capable of:\r\n\r\nAccurately recording environmental parameters including temperature, humidity, and light intensity.\r\nVisually displaying temperature using a custom LED encoding system.\r\nTransmitting real-time data to a remote server for further analysis.\r\nEnsuring extended operation time on a single charge, optimizing power efficiency.\r\nHardware Components\r\n1. Microcontroller & Processing Unit\r\nArduino Nano – The primary microcontroller, responsible for processing sensor data and managing display functions.\r\n2. Sensors & Data Acquisition\r\nDHT11/DHT22 Sensor – Records temperature and humidity at set intervals.\r\nLDR (Light Dependent Resistor) – Measures ambient light intensity.\r\n3. Power Management\r\nRechargeable Lithium-Ion Battery – Provides sustained power with an operation time of over 5 days per charge.\r\nEnergy-Efficient Circuit Design – Optimized for minimal power consumption to extend battery life.\r\n4. Wireless Communication\r\nESP8266 Wi-Fi Module – Enables the device to upload data to a remote server for real-time access.\r\n5. LED-Based Temperature Display\r\nRGB LED Indicators – Temperature is encoded using a color-based system, which requires a custom decoder sheet to interpret.\r\nSoftware & Algorithm Implementation\r\n1. Sensor Data Processing\r\nThe DHT11 sensor provides temperature and humidity readings every few seconds.\r\nThe LDR sensor detects variations in light intensity, which could be used for daylight monitoring.\r\nThe microcontroller processes this data and determines the corresponding LED display color pattern.\r\n2. LED Encoding System\r\nA unique LED color encoding system was designed to display temperature in a non-traditional format.\r\nA decoder sheet is required to interpret the color patterns into numerical values.\r\n3. Wireless Data Transmission\r\nThe device connects to a Wi-Fi network and transmits recorded sensor data to an external server.\r\nLogged data is stored and visualized as charts, allowing users to track environmental trends over time.\r\nTesting & Performance Analysis\r\nThe Weather Clock underwent extensive testing to evaluate:\r\n\r\nPower Efficiency – Successfully operated for over 5 days on a single charge.\r\nSensor Accuracy – Temperature and humidity readings were validated against calibrated instruments.\r\nWi-Fi Data Transmission – Successfully uploaded real-time environmental data to a remote server without delays.\r\nLED Visibility – Color-coded temperature indicators were easily distinguishable, ensuring usability.\r\nChallenges & Future Improvements\r\nChallenges Encountered\r\nLED Encoding Complexity – The color-based temperature display required an additional decoder sheet, making it less intuitive for new users.\r\nWi-Fi Signal Dependency – If Wi-Fi connectivity was unstable, real-time data transmission was delayed.\r\nPower Optimization – Although operational time was over 5 days, further improvements could extend battery life even more.\r\nProposed Improvements\r\n✅ Upgrade to a More Efficient Temperature Display – Implementing a small OLED screen for a direct numerical readout instead of LED encoding.\r\n✅ Enhance Power Management – Introducing low-power sleep modes for the microcontroller and sensors when idle.\r\n✅ Improve Data Logging & Storage – Adding on-device SD card storage for offline data retention when Wi-Fi is unavailable.\r\n\r\nReal-World Applications\r\nThe Weather Clock has potential applications in various domains, such as:\r\n\r\nHome & Office Climate Monitoring – Real-time tracking of temperature, humidity, and lighting conditions.\r\nIoT-Based Smart Systems – Integration with home automation setups for climate control adjustments.\r\nAgriculture & Greenhouse Monitoring – Helps farmers track microclimate changes to optimize plant health.\r\nEducational Use – A simple yet effective tool to demonstrate environmental data collection."
+      }
+    }
+  ],
+  "professional": [
+    {
+      "title": "Arduino Based Redundant Transmission for Buoy Networks",
+      "category": "Professional",
+      "images": [
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/1.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/10.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/11.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/12.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/13.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/14.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/15.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/16.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/17.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/18.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/19.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/2.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/20.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/21.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/22.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/23.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/24.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/25.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/26.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/27.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/28.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/3.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/4.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/5.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/6.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/7.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/8.png",
+        "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Images/9.png"
+      ],
+      "description": "",
+      "technologies": [],
+      "links": {
+        "https": "//github.com/AhmadShah-1/Arduino-Based-Redundant-Transmission-for-Buoy-Networks",
+        "papers": [
+          {
+            "name": "MECC_Final_Report (1)",
+            "url": "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Papers/MECC_Final_Report (1).pdf"
+          },
+          {
+            "name": "Process_and_Electrical (2)",
+            "url": "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Papers/Process_and_Electrical (2).pdf"
+          }
+        ]
+      },
+      "papers": [
+        {
+          "name": "MECC_Final_Report (1)",
+          "url": "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Papers/MECC_Final_Report (1).pdf"
+        },
+        {
+          "name": "Process_and_Electrical (2)",
+          "url": "/Assets/Projects/Professional/Arduino-Based-Redundant-Transmission-for-Buoy-Networks/Papers/Process_and_Electrical (2).pdf"
+        }
+      ],
+      "additionalInfo": {
+        "1": "Arduino-Based Redundant Transmission for Buoy Networks\r\nOverview\r\nThis repository contains the implementation and documentation for the Arduino-Based Redundant Transmission for Buoy Networks. The project aims to establish a resilient communication network among marine buoys using redundant transmission techniques to enhance reliability in harsh environments.\r\n\r\nProject Objective\r\nBuoy networks play a critical role in oceanographic data collection, weather monitoring, and maritime security. However, signal transmission between buoys and land stations is often unreliable due to environmental interference, range limitations, and power constraints. This project addresses these challenges by implementing:\r\n\r\n✅ Redundant Data Transmission – Ensuring robust communication using dual-path transmission.\r\n✅ Arduino-Based Control System – Leveraging low-power microcontrollers to manage signal relaying.\r\n✅ Error Correction Techniques – Enhancing data integrity through redundancy.\r\n✅ Low Power Consumption – Optimizing power efficiency for extended deployments.\r\nSystem Architecture\r\n🔧 Hardware Components\r\nArduino Uno – Core microcontroller for processing and communication.\r\nnRF24L01 Radio Module with Passive Amplifier – Wireless communication between buoy nodes.\r\nCustom Energy Production System – Utilizes a pendulum motion to drive a motor for power generation.\r\nBattery Pack – Supplemental energy source for continuous operation.\r\nSensors (Temperature, Humidity, GPS, etc.) – Environmental data collection and real-time monitoring.\r\n📌 The energy system, as detailed in the project reports, leverages mechanical motion from oceanic movements to generate power, ensuring the buoys remain operational in remote locations.\r\n\r\n💻 Software Stack\r\nArduino IDE – Firmware development.\r\nPython & MATLAB – Data analysis and visualization.\r\nEmbedded C – Microcontroller programming.\r\nnRF24L01 Radio Communication Library – Wireless data transmission.\r\nSPI & Wire Libraries – Communication with sensors and external components.\r\nDHT Library – Environmental data collection from temperature and humidity sensors.\r\nEEPROM Library – Data logging and storage for backup transmission.\r\n🌐 Network Design\r\nThe buoy network operates using a hybrid communication model:\r\n\r\nPrimary Channel (nRF24L01) – Long-range transmission to the base station.\r\nError Detection & Resend Mechanism – If data loss is detected, retransmission is triggered via an alternate route.\r\n🚀 Features\r\nReliable Transmission – Radio transmission for long-range reliable connectivity.\r\nReal-Time Data Logging – Sensor data is recorded and transmitted periodically.\r\nFault Tolerance – Automatic failover mechanism for communication disruptions.\r\nEfficient Power Management – Custom-powered system ensures sustainable operation.\r\n📥 Installation & Setup\r\n1️⃣ Clone the Repository\r\ngit clone https://github.com/AhmadShah-1/Arduino-Based-Redundant-Transmission-for-Buoy-Networks.git\r\ncd Arduino-Based-Redundant-Transmission-for-Buoy-Networks\r\n2️⃣ Required Libraries\r\nEnsure the following libraries are installed in the Arduino IDE:\r\n\r\n#include <DHT.h> // For temperature & humidity sensors\r\n#include <Wire.h> // I2C communication\r\n📊 Data Flow\r\nSensor data is collected.\r\nData is transmitted via the primary nRF24L01 channel.\r\nThe base station logs and processes the data for further analysis.\r\n🛠 Testing & Results\r\nRange Tests – The nRF24L01 module achieved communication up to 2 km with a passive amplifier.\r\nPower Consumption – The system operated for 48 hours on a single charge cycle.\r\nRedundancy Efficiency – Data loss was reduced by 80% compared to single-channel transmission.\r\n👥 Contributors\r\nAhmad Shah – Lead Developer, Software and Electrical Engineer [Team Members] – Mechanical Engineers, Business Analysts, Market Analysts\r\n\r\n🔮 Future Improvements\r\n📌 Improve power efficiency by refining the custom energy production system and optimizing energy storage management.\r\n📌 Enhance data transmission stability by fine-tuning the nRF24L01 communication protocol and testing alternative amplification methods.\r\n📌 Enhance error correction algorithms.\r\n📌 Expand support for additional sensors and real-time alerts.\r\n🎓 Acknowledgments\r\nStevens Institute of Technology Department of Civil, Environmental, and Ocean Engineering\r\n\r\nFor any inquiries, please contact ahmadsyedshah123@gmail.com."
+      }
+    },
+    {
+      "title": "C_ALL",
+      "category": "Professional",
+      "images": [
+        "/Assets/Projects/Professional/C_ALL/Images/1.png",
+        "/Assets/Projects/Professional/C_ALL/Images/10.png",
+        "/Assets/Projects/Professional/C_ALL/Images/11.png",
+        "/Assets/Projects/Professional/C_ALL/Images/12.png",
+        "/Assets/Projects/Professional/C_ALL/Images/13.png",
+        "/Assets/Projects/Professional/C_ALL/Images/14.png",
+        "/Assets/Projects/Professional/C_ALL/Images/2.png",
+        "/Assets/Projects/Professional/C_ALL/Images/3.png",
+        "/Assets/Projects/Professional/C_ALL/Images/4.png",
+        "/Assets/Projects/Professional/C_ALL/Images/5.png",
+        "/Assets/Projects/Professional/C_ALL/Images/6.png",
+        "/Assets/Projects/Professional/C_ALL/Images/7.png",
+        "/Assets/Projects/Professional/C_ALL/Images/8.png",
+        "/Assets/Projects/Professional/C_ALL/Images/9.png"
+      ],
+      "description": "",
+      "technologies": [],
+      "links": {
+        "https": "//github.com/AhmadShah-1/C_ALL",
+        "papers": [
+          {
+            "name": "Group_06_Book_SSW423",
+            "url": "/Assets/Projects/Professional/C_ALL/Papers/Group_06_Book_SSW423.pdf"
+          }
+        ]
+      },
+      "papers": [
+        {
+          "name": "Group_06_Book_SSW423",
+          "url": "/Assets/Projects/Professional/C_ALL/Papers/Group_06_Book_SSW423.pdf"
+        }
+      ],
+      "additionalInfo": {}
+    },
+    {
+      "title": "DREUS_Project_NSF",
+      "category": "Professional",
+      "images": [
+        "/Assets/Projects/Professional/DREUS_Project_NSF/Images/1.png",
+        "/Assets/Projects/Professional/DREUS_Project_NSF/Images/2.png",
+        "/Assets/Projects/Professional/DREUS_Project_NSF/Images/avg_detections_per_model.png",
+        "/Assets/Projects/Professional/DREUS_Project_NSF/Images/avg_inference_time_per_model.png",
+        "/Assets/Projects/Professional/DREUS_Project_NSF/Images/confidence_scores_per_model.png",
+        "/Assets/Projects/Professional/DREUS_Project_NSF/Images/confidence_trend_per_image.png"
+      ],
+      "description": "",
+      "technologies": [],
+      "links": {
+        "https": "//easychair.org/conferences2/overview?a=33849257",
+        "papers": [
+          {
+            "name": "ICDCS_2025_paper_520 (1) (1)",
+            "url": "/Assets/Projects/Professional/DREUS_Project_NSF/Papers/ICDCS_2025_paper_520 (1) (1).pdf"
+          }
+        ]
+      },
+      "papers": [
+        {
+          "name": "ICDCS_2025_paper_520 (1) (1)",
+          "url": "/Assets/Projects/Professional/DREUS_Project_NSF/Papers/ICDCS_2025_paper_520 (1) (1).pdf"
+        }
+      ],
+      "additionalInfo": {
+        "1": "DREUS\r\nDREUS is an advanced disaster response framework leveraging deep reinforcement learning (DRL) to enable autonomous UAV swarms to perform post-disaster surveillance and survivor assistance. The system integrates facial recognition, emotion detection, and federated learning for collaborative swarm intelligence, ensuring efficient navigation and coordination in dynamic and unpredictable disaster environments. This project was a joint effort with the National Sceince Foundation, more information on the official submission can be found on the ICDCS Page, https://easychair.org/conferences2/overview?a=33849257. Our paper submission is attached in the ICDCS_2025_paper_520.pdf.\r\n\r\nKey Features:\r\nSurveillance & Assistance: Conducts coordinated surveys, identifies survivors, and prioritizes aid using advanced recognition models. Swarm Collaboration: Shared swarm database prevents redundant UAV visits and centralizes data for efficient tracking. Federated Learning (FL): Enhances decision-making through collaborative training while maintaining data privacy. Training Optimization: Significant Replay Memory Buffer (SRMB) prioritizes critical experiences for faster learning. Realistic Simulations: Survivor behavior modeled on real-world human mobility data ensures reliability. Implementation & Validation: Developed in OpenAI Gym and validated in CoppeliaSim for realistic disaster scenarios. Applications: DREUS is designed to assist in post-disaster scenarios, improving search-and-rescue efforts by efficiently surveying affected areas, identifying survivors, and delivering targeted assistance.\r\n\r\nTechnologies Used:\r\nDeep Reinforcement Learning Federated Learning YOLOv8 for Object Detection OpenAI Gym for Simulatiom TensorFlow/Keras for Emotion Recognition How to Use: Detailed steps for setup, running simulations, and interpreting results will be included in the repository's documentation.\r\n\r\nAcknowledgments:\r\nThis framework builds on the latest advancements in UAV technologies, reinforcement learning, and federated systems. It draws inspiration from real-world disaster recovery needs and incorporates cutting-edge machine learning algorithms for robust performance."
+      }
+    },
+    {
+      "title": "LidarRobot",
+      "category": "Professional",
+      "images": [
+        "/Assets/Projects/Professional/LidarRobot/Images/Course.png",
+        "/Assets/Projects/Professional/LidarRobot/Images/MainDisplay.png",
+        "/Assets/Projects/Professional/LidarRobot/Images/RenderedRobot.png",
+        "/Assets/Projects/Professional/LidarRobot/Images/robotdrawing-2.jpg"
+      ],
+      "description": "",
+      "technologies": [],
+      "links": {},
+      "papers": [],
+      "additionalInfo": {
+        "1": "Lidar-Based Autonomous Navigation Robot\r\nProject Overview\r\nThis project focuses on the design and development of an autonomous robot equipped with LiDAR (Light Detection and Ranging) sensors and ultrasonic modules to navigate complex terrains while avoiding unforeseen obstacles. The robot is designed to efficiently traverse toward assigned coordinates while dynamically adjusting its path to accommodate real-time environmental changes.\r\n\r\nBy integrating sensor fusion, real-time data processing, and efficient path-planning algorithms, the project aims to simulate and improve autonomous navigation capabilities for various real-world applications, including warehouse logistics, search and rescue missions, and autonomous vehicle research.\r\n\r\nProject Objectives\r\nThe primary goal of the Lidar-Based Autonomous Navigation Robot is to implement a self-sufficient robotic system that can:\r\n\r\nNavigate from an initial position to a set of target coordinates while avoiding obstacles.\r\nDetect and classify obstacles in real time using LiDAR and ultrasonic sensors.\r\nDynamically update its path-planning mechanism based on live data processing.\r\nMaintain stability and balance at increased speeds by optimizing the center of mass.\r\nTransmit positional data to a remote server, allowing external devices to monitor and modify its navigation behavior.\r\nHardware Components\r\n1. Microcontroller & Processing Unit\r\nArduino Uno – Acts as the main processing unit, responsible for sensor data acquisition and motor control.\r\nESP8266 (Optional) – A Wi-Fi module to handle real-time data transmission and cloud-based control.\r\n2. Navigation & Obstacle Detection\r\n360° LiDAR Sensor – Used for long-range scanning and object detection.\r\nUltrasonic Sensors (HC-SR04) – Installed at the front and sides to detect nearby obstacles.\r\n3. Motion System\r\nHigh-Torque DC Motors – Enables the robot to traverse diverse terrains.\r\nMotor Driver (L298N) – Controls the speed and direction of the motors.\r\nServo Motors – Used for dynamically adjusting sensor angles to improve coverage.\r\n4. Power Supply\r\nRechargeable Lithium-Ion Battery Pack – Provides power to all components.\r\nSoftware & Algorithm Implementation\r\n1. Path Planning & Obstacle Avoidance\r\nThe robot follows a predefined route while continuously scanning for obstacles.\r\nUses custom path-finding algorithm to compute the optimal path dynamically.\r\nIf an obstacle is detected, the robot calculates an alternative path in real time.\r\n2. Sensor Data Processing\r\nThe LiDAR sensor provides high-resolution distance measurements, mapping the surrounding environment.\r\nUltrasonic sensors help detect nearby objects where LiDAR may be less effective.\r\nData from these sensors is merged to provide a comprehensive view of the environment.\r\n3. Wireless Communication\r\nThe robot transmits real-time positional and sensor data to a remote server or monitoring station.\r\nThis data can be accessed via a web interface or mobile app, allowing remote observation and manual intervention.\r\nTesting & Performance Analysis\r\nThe robot underwent extensive testing in a simulated obstacle course with randomly placed obstacles and assigned targets. The results demonstrated:\r\n\r\nEfficient obstacle detection with a response time of ~150ms.\r\nSuccessful autonomous navigation to multiple destinations, albeit with minor inaccuracies due to sensor limitations.\r\nChallenges & Future Improvements\r\nChallenges Encountered\r\nBlind Spots in Ultrasonic Coverage – The robot had difficulty detecting objects at certain angles.\r\nDelayed Processing in Complex Environments – Navigation became inefficient when multiple obstacles were clustered together.\r\nProposed Improvements\r\nIncrease Sensor Coverage – Adding more ultrasonic sensors to eliminate blind spots and improve responsiveness.\r\nRefine Obstacle Avoidance Logic – Implementing machine learning-based environmental adaptation for smarter path recalculations.\r\nEnhance Energy Efficiency – Further optimizing the device to extend operational time.\r\n\r\nReal-World Applications\r\nAutonomous Warehouse Robots – Navigating dynamic environments while transporting goods.\r\nAutonomous Vehicles & Drones – Providing enhanced environmental awareness in navigation systems.\r\nSmart City Applications – Assisting in urban mobility solutions like autonomous delivery bots."
+      }
+    },
+    {
+      "title": "SSW 322 A Group 3 Health Tracker App",
+      "category": "Professional",
+      "images": [
+        "/Assets/Projects/Professional/SSW-322-A-Group-3-Health-Tracker-App/Images/Activity Diagrams.jpg",
+        "/Assets/Projects/Professional/SSW-322-A-Group-3-Health-Tracker-App/Images/ClassDiagram.png",
+        "/Assets/Projects/Professional/SSW-322-A-Group-3-Health-Tracker-App/Images/SequenceDiagram.png",
+        "/Assets/Projects/Professional/SSW-322-A-Group-3-Health-Tracker-App/Images/Use Case Diagram.png"
+      ],
+      "description": "",
+      "technologies": [],
+      "links": {
+        "https": "//github.com/Alex-Anthony/SSW-322-A-Group-3-Health-Tracker-App",
+        "papers": [
+          {
+            "name": "SSW 322 Milestone 3 Slides",
+            "url": "/Assets/Projects/Professional/SSW-322-A-Group-3-Health-Tracker-App/Papers/SSW 322 Milestone 3 Slides.pdf"
+          }
+        ]
+      },
+      "papers": [
+        {
+          "name": "SSW 322 Milestone 3 Slides",
+          "url": "/Assets/Projects/Professional/SSW-322-A-Group-3-Health-Tracker-App/Papers/SSW 322 Milestone 3 Slides.pdf"
+        }
+      ],
+      "additionalInfo": {}
+    }
+  ]
+}
