@@ -13,7 +13,7 @@ export async function getProjectData(slug) {
   // Use gray-matter to parse the post metadata section
   const { data, content } = matter(fileContents);
 
-  // Use next-mdx-remote to serialize the content
+  // Used next-mdx-remote to serialize the content
   const mdxSource = await serialize(content, {
     mdxOptions: {
       remarkPlugins: [[remarkGfm]],

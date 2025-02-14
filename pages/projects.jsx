@@ -26,7 +26,11 @@ export default function Projects({ projects }) {
           <h1 className="text-4xl font-bold text-gray-900 mb-4">My Projects</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             A collection of my work in software development, research, and innovation.
+            <br />
             Each project represents a unique challenge and solution.
+            <br />
+            <br />
+            Consider reading my published papers, located at the bottom of each project page!
           </p>
         </motion.div>
 
