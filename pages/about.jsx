@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import Layout from '../components/Layout';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const skills = [
   {
@@ -33,6 +33,26 @@ export default function About() {
     success: false,
     message: ''
   });
+  
+  const formRef = useRef(null);
+  
+  // Initialize EmailJS when component mounts
+  useEffect(() => {
+    // Load EmailJS SDK
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+    script.async = true;
+    document.body.appendChild(script);
+    
+    script.onload = () => {
+      // Initialize EmailJS with your User ID
+      window.emailjs.init('czDSnMGqNfHFs5d_s');
+    };
+    
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,10 +67,10 @@ export default function About() {
     setFormStatus({ submitted: true, success: false, message: 'Sending...' });
     
     try {
-      console.log('Submitting form with data:', formData);
+      // First try the server API route
+      console.log('Trying server-side email sending...');
       
-      // Send email using server-side API route
-      const response = await fetch('/api/send-email', {
+      const serverResponse = await fetch('/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -58,30 +78,59 @@ export default function About() {
         body: JSON.stringify(formData)
       });
       
-      console.log('API response status:', response.status);
-      const data = await response.json();
-      console.log('API response data:', data);
+      console.log('Server API response status:', serverResponse.status);
+      const serverData = await serverResponse.json();
       
-      if (response.ok) {
-        // Reset form after successful submission
+      if (serverResponse.ok) {
+        // Server-side approach worked
         setFormData({ name: '', email: '', message: '' });
         setFormStatus({
           submitted: false,
           success: true,
           message: 'Your message has been sent successfully!'
         });
-      } else {
-        const errorMessage = data.details || data.error || 'Failed to send message';
-        console.error('Error details:', errorMessage);
-        throw new Error(errorMessage);
+        return; // Exit early if successful
       }
+      
+      console.log('Server-side approach failed, trying client-side...');
+      
+      // If server approach fails, try client-side approach like in the playground
+      if (window.emailjs) {
+        const templateParams = {
+          title: `Contact from ${formData.name}`,
+          name: formData.name,
+          time: new Date().toLocaleString(),
+          message: formData.message,
+          email: formData.email
+        };
+        
+        const clientResponse = await window.emailjs.send(
+          'default_service',
+          'template_0hxnkri',
+          templateParams
+        );
+        
+        console.log('Client-side EmailJS response:', clientResponse);
+        
+        if (clientResponse.status === 200) {
+          setFormData({ name: '', email: '', message: '' });
+          setFormStatus({
+            submitted: false,
+            success: true,
+            message: 'Your message has been sent successfully using client-side EmailJS!'
+          });
+          return;
+        }
+      }
+      
+      throw new Error('Both server-side and client-side approaches failed');
     } catch (error) {
       console.error('Error sending email:', error);
       
-      // Fallback to mailto: if EmailJS fails
-      const fallbackMessage = 'Server-side email sending failed. Would you like to open your email client instead?';
+      // Fallback to mailto: if everything else fails
+      const fallbackMessage = 'Email sending failed. Would you like to open your email client instead?';
       
-      if (confirm(fallbackMessage)) {
+      if (window.confirm(fallbackMessage)) {
         const subject = `Contact from ${formData.name}`;
         const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
         const mailtoLink = `mailto:ahmadsyedshah123@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;

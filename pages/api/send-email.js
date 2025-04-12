@@ -12,17 +12,17 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
     
-    // Construct payload for EmailJS - simplified to match template exactly
+    // Construct payload for EmailJS - match playground example exactly
     const payload = {
-      service_id: 'service_ktj1rbo',
+      service_id: 'default_service', // Use default_service as shown in playground
       template_id: 'template_0hxnkri',
       user_id: 'czDSnMGqNfHFs5d_s',
-      // Remove accessToken - not needed and may cause issues
       template_params: {
-        // Only include parameters that match the template
+        title: `Contact from ${name}`, // Add title field
         name: name,
         time: new Date().toLocaleString(),
-        message: message
+        message: message,
+        email: email // Add email field
       }
     };
 
@@ -33,7 +33,7 @@ export default async function handler(req, res) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Origin': 'http://localhost:3000' // Add origin header to help with domain validation
+        'Origin': 'http://localhost:3000'
       },
       body: JSON.stringify(payload)
     });
