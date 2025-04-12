@@ -34,25 +34,6 @@ export default function About() {
     message: ''
   });
 
-  // Initialize EmailJS when component mounts
-  useEffect(() => {
-    // Load EmailJS SDK
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
-    script.async = true;
-    document.body.appendChild(script);
-    
-    script.onload = () => {
-      // Initialize EmailJS with your User ID
-      window.emailjs.init("czDSnMGqNfHFs5d_s"); // You'll need to get your public key from EmailJS dashboard
-    };
-    
-    return () => {
-      // Clean up
-      document.body.removeChild(script);
-    };
-  }, []);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -66,22 +47,22 @@ export default function About() {
     setFormStatus({ submitted: true, success: false, message: 'Sending...' });
     
     try {
-      // Send email using EmailJS
-      const templateParams = {
-        name: formData.name,
-        email: formData.email,
-        message: formData.message,
-        title: `Contact Us: ${formData.name}`,
-        reply_to: formData.email
-      };
+      console.log('Submitting form with data:', formData);
       
-      const response = await window.emailjs.send(
-        'service_ktj1rbo', // Your EmailJS Service ID
-        'template_0hxnkri', // Your EmailJS Template ID
-        templateParams
-      );
+      // Send email using server-side API route
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
       
-      if (response.status === 200) {
+      console.log('API response status:', response.status);
+      const data = await response.json();
+      console.log('API response data:', data);
+      
+      if (response.ok) {
         // Reset form after successful submission
         setFormData({ name: '', email: '', message: '' });
         setFormStatus({
@@ -90,15 +71,34 @@ export default function About() {
           message: 'Your message has been sent successfully!'
         });
       } else {
-        throw new Error('Failed to send message');
+        const errorMessage = data.details || data.error || 'Failed to send message';
+        console.error('Error details:', errorMessage);
+        throw new Error(errorMessage);
       }
     } catch (error) {
       console.error('Error sending email:', error);
-      setFormStatus({
-        submitted: false,
-        success: false,
-        message: 'Something went wrong. Please try again or email me directly.'
-      });
+      
+      // Fallback to mailto: if EmailJS fails
+      const fallbackMessage = 'Server-side email sending failed. Would you like to open your email client instead?';
+      
+      if (confirm(fallbackMessage)) {
+        const subject = `Contact from ${formData.name}`;
+        const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+        const mailtoLink = `mailto:ahmadsyedshah123@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailtoLink;
+        
+        setFormStatus({
+          submitted: false,
+          success: true,
+          message: 'Opening your email client...'
+        });
+      } else {
+        setFormStatus({
+          submitted: false,
+          success: false,
+          message: `Error: ${error.message}. Please email me directly at ahmadsyedshah123@gmail.com`
+        });
+      }
     }
   };
 
