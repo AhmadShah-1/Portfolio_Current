@@ -3,6 +3,7 @@ const withMDX = require('@next/mdx')({
   options: {
     remarkPlugins: [],
     rehypePlugins: [],
+    providerImportSource: '@mdx-js/react',
   },
 });
 
@@ -18,7 +19,7 @@ const nextConfig = {
   // Enable static file serving for the public directory
   webpack(config) {
     config.module.rules.push({
-      test: /\.(pdf|doc|docx|png|jpg|jpeg|gif)$/i,
+      test: /\.(pdf|doc|docx|png|jpg|jpeg|gif|ipynb)$/i,
       type: 'asset/resource'
     });
     return config;

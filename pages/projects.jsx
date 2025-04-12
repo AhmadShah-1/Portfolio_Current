@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 import ProjectCard from '../components/ProjectCard';
 import { getAllProjects } from '../utils/mdx';
 
-const filterOptions = ['All', 'Professional', 'Personal'];
+const filterOptions = ['All', 'Professional', 'Projects'];
 
 export default function Projects({ projects }) {
   const [activeFilter, setActiveFilter] = useState('All');

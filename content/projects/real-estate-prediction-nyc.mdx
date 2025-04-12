@@ -1,0 +1,159 @@
+---
+title: "Real Estate Prediction in NYC"
+category: "Projects"
+heroImage: "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/FromPDF/HeatmapofPredictedHousevaluefor2025NYCallborough.png"
+description: "A machine learning project leveraging NYC Open Data to predict property values across different boroughs, featuring data preprocessing, model comparison, and advanced visualization techniques."
+date: "2023-05-15"
+pdfUrl: "/Assets/Projects/Personal/RealEstatePredictioninNYC/Info/_ISE490__Real_Estate_Prediction_in_NYC.pdf"
+notebookUrl: "/Assets/Projects/Personal/RealEstatePredictioninNYC/Info/DataScienceProject2.ipynb"
+---
+
+export const assetImages = [
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/FromPDF/HeatmapofPredictedHousevaluefor2025NYCallborough.png",
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/LibrariesandTools.png",
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/2010-2019DatasetCategories.png",
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/2021-2023DatasetCategories.png",
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/UsefulCategoriesDataset1.png",
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/UsefulCategoriesDataset2.png",
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/CommonCategoriesofDataset1and2.png",
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/Dataset1and2MergedandCleaned.png",
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/DatapointsperBorough.png",
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/DatapointsRemovedinCleaningbyBorough.png",
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/PropertiesInManhattanBorough.png",
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/PropertiesinBrooklynBorough.png",
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/PriceDistributionofBuildingsinBlock16for2017.png",
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/FromPDF/PriceDistributionofBuildingsinBlock16beforecleaning.png",
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/FromPDF/PriceDistributionofBuildingsinBlock16aftercleaning.png",
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/FromPDF/GridsearchCVResultsformodel_n_estimators.png",
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/FromPDF/GridsearchCVResultsformodel_learning_rate.png",
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/FromPDF/BestParametersforXGBClassifier.png",
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/FromPDF/BestParametersforXGBRegressor.png",
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/FromPDF/ActualvsPredictedValues.png",
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/Metrics.png",
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/FromPDF/ModelEvaluationMetrics.png",
+  "/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/FromPDF/ClassificationReport.png"
+];
+
+# Real Estate Prediction in NYC
+
+## Project Overview
+
+This project leverages machine learning to predict property values in New York City by analyzing historical data from NYC Open Data. The implementation tackles common issues in real estate prediction, such as:
+
+- Incomplete datasets with missing values
+- Variances in data collected over different time periods
+- The need for robust cross-validation and hyperparameter tuning for accurate predictions
+- Visualization of spatial property value predictions over NYC
+
+By integrating rigorous data preprocessing, model comparisons, and advanced visualization techniques, the project provides stakeholders with an informative tool to analyze market trends and make informed decisions in the NYC real estate market.
+
+## Key Features
+
+- **Data Preprocessing**: Aggregates multiple datasets covering different time ranges, performs data cleaning including imputation of missing values, outlier removal, and feature scaling.
+- **Machine Learning Pipeline**: Compares several regression models (Linear Regression, Random Forest Regressor, and XGBRegressor) and implements GridSearchCV for hyperparameter optimization.
+- **Visualization & Analysis**: Generates scatter plots comparing actual vs. predicted property values and creates geographic heat maps to illustrate spatial trends in property valuations.
+
+## Project Implementation & Results
+
+### Libraries and Tools
+
+The project utilizes a variety of Python libraries for data processing, analysis, and machine learning:
+
+![Libraries and Tools](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/LibrariesandTools.png)
+
+### Data Collection and Preprocessing
+
+Two primary datasets were used in this project:
+1. **Dataset 1 (2010-2019)**: Contains historical property valuation data
+   
+   ![2010-2019 Dataset Categories](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/2010-2019DatasetCategories.png)
+
+2. **Dataset 2 (2021-2023)**: Contains more recent property valuation data
+   
+   ![2021-2023 Dataset Categories](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/2021-2023DatasetCategories.png)
+
+After analyzing both datasets, the most useful categories were identified:
+
+**Useful Categories from Dataset 1:**
+![Useful Categories Dataset 1](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/UsefulCategoriesDataset1.png)
+
+**Useful Categories from Dataset 2:**
+![Useful Categories Dataset 2](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/UsefulCategoriesDataset2.png)
+
+**Common Categories Between Datasets:**
+![Common Categories](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/CommonCategoriesofDataset1and2.png)
+
+After merging and cleaning the datasets:
+![Merged and Cleaned Dataset](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/Dataset1and2MergedandCleaned.png)
+
+### Data Analysis by Borough
+
+The data was split by borough to account for different growth characteristics across New York City. This analysis revealed significant differences in data distribution:
+
+![Datapoints per Borough](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/DatapointsperBorough.png)
+
+During data cleaning, some datapoints were removed due to missing values or outliers:
+
+![Datapoints Removed in Cleaning by Borough](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/DatapointsRemovedinCleaningbyBorough.png)
+
+The properties were visualized on maps to better understand their spatial distribution:
+
+**Manhattan Properties:**
+![Properties in Manhattan Borough](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/PropertiesInManhattanBorough.png)
+
+**Brooklyn Properties:**
+![Properties in Brooklyn Borough](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/PropertiesinBrooklynBorough.png)
+
+### Data Distribution Analysis
+
+To understand the price distribution, specific blocks were analyzed:
+
+![Price Distribution of Buildings in Block 16 for 2017](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/PriceDistributionofBuildingsinBlock16for2017.png)
+
+**Before Cleaning:**
+![Price Distribution Before Cleaning](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/FromPDF/PriceDistributionofBuildingsinBlock16beforecleaning.png)
+
+**After Cleaning:**
+![Price Distribution After Cleaning](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/FromPDF/PriceDistributionofBuildingsinBlock16aftercleaning.png)
+
+### Model Optimization
+
+GridSearchCV was used to find optimal hyperparameters for the models:
+
+**GridSearch Results for n_estimators:**
+![GridSearch CV Results for model_n_estimators](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/FromPDF/GridsearchCVResultsformodel_n_estimators.png)
+
+**GridSearch Results for learning_rate:**
+![GridSearch CV Results for model_learning_rate](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/FromPDF/GridsearchCVResultsformodel_learning_rate.png)
+
+**Best Parameters for XGBClassifier:**
+![Best Parameters for XGBClassifier](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/FromPDF/BestParametersforXGBClassifier.png)
+
+**Best Parameters for XGBRegressor:**
+![Best Parameters for XGBRegressor](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/FromPDF/BestParametersforXGBRegressor.png)
+
+### Model Evaluation
+
+The models were evaluated using various metrics to assess their performance:
+
+**Actual vs Predicted Values:**
+![Actual vs Predicted Values](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/FromPDF/ActualvsPredictedValues.png)
+
+**Model Metrics:**
+![Metrics](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/Metrics.png)
+
+**Model Evaluation Metrics:**
+![Model Evaluation Metrics](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/FromPDF/ModelEvaluationMetrics.png)
+
+**Classification Report:**
+![Classification Report](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/FromPDF/ClassificationReport.png)
+
+## Conclusion
+
+The Real Estate Prediction in NYC project successfully demonstrates the application of machine learning techniques to predict property values in New York City. After comparing several regression models, the XGBRegressor proved to be the most effective, achieving the lowest Mean Squared Error and highest R-squared value.
+
+The heatmap visualization of predicted house values for 2025 provides stakeholders with valuable insights into future real estate trends across different boroughs:
+
+![Heatmap of Predicted House Value for 2025 NYC All Borough](/Assets/Projects/Personal/RealEstatePredictioninNYC/Images/FromPDF/HeatmapofPredictedHousevaluefor2025NYCallborough.png)
+
+This project demonstrates the importance of thorough data preprocessing, appropriate model selection, and rigorous evaluation in creating reliable property value predictions, which can be valuable for real estate investors, urban planners, and policymakers. 

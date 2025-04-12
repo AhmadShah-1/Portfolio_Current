@@ -15,7 +15,11 @@
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
     "@next/mdx": "^13.4.19",
+    "@radix-ui/react-tabs": "^1.1.4",
+    "@react-pdf-viewer/core": "^3.12.0",
     "autoprefixer": "^10.4.15",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "framer-motion": "^10.16.0",
     "gray-matter": "^4.0.3",
     "next": "^13.4.19",
@@ -24,7 +28,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.5.2",
+    "react-pdf": "^9.2.1",
     "remark-gfm": "^3.0.1",
+    "tailwind-merge": "^3.2.0",
     "tailwindcss": "^3.3.3"
   },
   "devDependencies": {
