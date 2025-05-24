@@ -1,16 +1,16 @@
 ---
 title: "C_ALL: Cognitive Assistance with LIDAR Localization"
 category: "Professional"
-heroImage: "/Assets/Projects/Professional/C_ALL/Images/1.png"
+heroImage: "/Assets/Projects/Professional/C_ALL/Images/15.png"
 description: "An innovative assistive technology system that combines LIDAR-based localization with cognitive assistance to help visually impaired individuals navigate indoor environments safely and independently."
 technologies:
   - "LIDAR Technology"
-  - "ROS (Robot Operating System)"
+  - "Feature Points Estimation"
   - "Python"
-  - "Computer Vision"
+  - "Swift"
   - "Sensor Fusion"
-  - "Machine Learning"
 galleryImages: [
+  "/Assets/Projects/Professional/C_ALL/Images/15.png",
   "/Assets/Projects/Professional/C_ALL/Images/1.png",
   "/Assets/Projects/Professional/C_ALL/Images/2.png",
   "/Assets/Projects/Professional/C_ALL/Images/3.png",
@@ -27,15 +27,64 @@ links:
 papers:
   - name: "Project Documentation"
     url: "/Assets/Projects/Professional/C_ALL/Papers/Group_06_Book_SSW423.pdf"
+
+  - name: "Product Manual"
+    url: "/Assets/Projects/Professional/C_ALL/Papers/Group_06_UserManual.pdf"
+
+  - name: "SES Board Presentation"
+    url: "/Assets/Projects/Professional/C_ALL/Papers/SESBoardPresentation.pdf"
+
 ---
 
 # C_ALL: Cognitive Assistance with LIDAR Localization
 
-## Project Overview
-C_ALL is an innovative assistive technology system designed to help visually impaired individuals navigate indoor environments safely and independently. The system combines LIDAR-based localization with cognitive assistance to provide real-time guidance, obstacle detection, and spatial awareness to users.
 
-![System Overview](/Assets/Projects/Professional/C_ALL/Images/1.png)
-Overview of the C_ALL system architecture and components.
+
+## Project Overview
+C_ALL is an innovative assistive technology system designed to help visually impaired individuals navigate indoor environments safely and independently. The system combines LIDAR-based localization with cognitive assistance to provide real-time guidance, obstacle detection, and spatial awareness to users. My team and I had the amazing opportunity to present this project to the Board of Trustees at Stevens Institute of Technology, an honor reserved to a few. We also had the opportunity to present our project as finalists for the [Ansary Entrepreneurship Competetion](https://www.linkedin.com/feed/update/urn:li:activity:7326392560489275392/).
+
+<embed src="/Assets/Projects/Professional/C_ALL/Images/Diagrams/Activity_Diagrams/ALL_Activity_diagram.pdf" type="application/pdf" width="100%" height="600px" />
+Overview of the C_ALL system represented with comprehensive Actvity Diagrams.
+
+<div className="relative w-full max-w-2xl mx-auto">
+  <video 
+    controls
+    preload="metadata"
+    playsInline
+    className="w-full h-auto rounded-lg shadow-lg mb-8"
+    poster="/Assets/Projects/Professional/C_ALL/Images/Videos/FinalVersion.mp4"
+    style={{ maxWidth: '50%' }}
+  >
+    <source src="/Assets/Projects/Professional/C_ALL/Images/Videos/FinalVersion.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</div>
+This is the Testing View, the User will instead use two physical rotaters on two gloves that will direct the user. One glove will direct the User towards the target (Navigation), whilst the other will alert the User of obstacles (Avoidance) and guide him/her around it. 
+
+
+![Glove Prototype](/Assets/Projects/Professional/C_ALL/Images/Glove_Prototype.png)
+Above is an image of the Glove Prototype that the User will be expected to wear for guidance
+
+
+<div className="relative w-full max-w-2xl mx-auto">
+  <video 
+    controls
+    preload="metadata"
+    playsInline
+    className="w-full h-auto rounded-lg shadow-lg mb-8"
+    poster="/Assets/Projects/Professional/C_ALL/Images/Videos/Calibration.mp4"
+    style={{ maxWidth: '50%' }}
+  >
+    <source src="/Assets/Projects/Professional/C_ALL/Images/Videos/Calibration.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</div>
+Shown is the calibration procedure for the pointers, ensuring they always start on true forwards. This is done by utilizing two limit switches, and measuring the time taken to reach each limit switch and rotating the pointer to the center.
+
+
+
+
+
 
 ## Core Features
 
@@ -50,14 +99,25 @@ Overview of the C_ALL system architecture and components.
 LIDAR-generated map showing environment detection and obstacle identification.
 
 ### Cognitive Assistance
-- Voice-based navigation guidance
 - Contextual environment descriptions
 - Obstacle proximity alerts
 - Safe path recommendations
-- Emergency assistance features
 
-![Assistance Interface](/Assets/Projects/Professional/C_ALL/Images/3.png)
-User interface showing cognitive assistance features and navigation guidance.
+<div className="zoomable-image-container">
+  <img 
+    src="/Assets/Projects/Professional/C_ALL/Images/Diagrams/Class_Diagrams/classDiagramv7.png" 
+    alt="Class Diagram" 
+    className="large-diagram"
+    style={{ width: '100%', maxWidth: '100%', cursor: 'zoom-in' }}
+    onClick={() => window.open('/Assets/Projects/Professional/C_ALL/Images/Diagrams/Class_Diagrams/classDiagramv7.png', '_blank')}
+  />
+  <div className="text-center text-sm mt-2">
+    <a href="/Assets/Projects/Professional/C_ALL/Images/Diagrams/Class_Diagrams/classDiagramv7.png" target="_blank" rel="noopener noreferrer">
+      Click to view full-size diagram
+    </a>
+  </div>
+  <p className="text-center">Class Diagram showcasing all cognitive assistance features and navigation guidance.</p>
+</div>
 
 ## Technical Implementation
 
@@ -68,8 +128,17 @@ User interface showing cognitive assistance features and navigation guidance.
 - Environmental mapping
 - Position tracking
 
-![Sensor System](/Assets/Projects/Professional/C_ALL/Images/4.png)
-Detailed view of the sensor integration and data flow.
+<div className="zoomable-image-container">
+  <img 
+    src="/Assets/Projects/Professional/C_ALL/Images/Diagrams/Component_Diagrams/componentdiagram.png" 
+    alt="Component Diagram" 
+    className="large-diagram"
+    style={{ width: '100%', maxWidth: '100%', cursor: 'zoom-in' }}
+  />
+  <div className="text-center text-sm mt-2">
+  </div>
+  <p className="text-center">Component Diagram showing overview of the data flow.</p>
+</div>
 
 ### Navigation System
 - Path planning algorithms
@@ -83,15 +152,14 @@ Navigation system architecture and path planning visualization.
 
 ## User Interface
 
-### Voice Interface
-- Natural language processing
+### User Interaction
 - Context-aware commands
 - Real-time feedback
 - Emergency protocols
 - User customization options
 
-![Voice Interface](/Assets/Projects/Professional/C_ALL/Images/6.png)
-Voice interface system and user interaction flow.
+![UI Interface](/Assets/Projects/Professional/C_ALL/Images/6.png)
+user interaction flow.
 
 ### Safety Features
 - Collision prevention
@@ -100,21 +168,16 @@ Voice interface system and user interaction flow.
 - System health checks
 - Backup navigation modes
 
-![Safety Systems](/Assets/Projects/Professional/C_ALL/Images/7.png)
-Overview of safety features and emergency protocols.
+![Safety Systems](/Assets/Projects/Professional/C_ALL/Images/Diagrams/Use_Cases/ucFailSafe.png)
+Use Case depicting Fail Safe procedure
 
-## Performance Analysis
-- Navigation accuracy metrics
-- Response time measurements
-- Battery life optimization
-- System reliability tests
-- User feedback integration
+![Safety Systems](/Assets/Projects/Professional/C_ALL/Images/Diagrams/Use_Cases/ucObstacleAvoid.png)
+Use Case depicting Obstacle Avoidance procedure
 
-![Performance Metrics](/Assets/Projects/Professional/C_ALL/Images/8.png)
-System performance analysis and optimization results.
 
 ## Future Developments
 Planned enhancements include:
+- AI Siri Integration once developer tools are available
 - Enhanced object recognition
 - Improved battery efficiency
 - Expanded environment mapping

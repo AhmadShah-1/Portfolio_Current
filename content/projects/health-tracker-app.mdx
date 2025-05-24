@@ -1,7 +1,7 @@
 ---
 title: "Health Tracker App"
 category: "Professional"
-heroImage: "/Assets/Projects/Professional/SSW-322-A-Group-3-Health-Tracker-App/Images/Use Case Diagram.png"
+heroImage: "/Assets/Projects/Professional/SSW-322-A-Group-3-Health-Tracker-App/Images/HealthTrackerApp_Video.mp4"
 description: "A comprehensive health tracking application designed to help users monitor their fitness goals, track vital statistics, and maintain a healthy lifestyle."
 technologies:
   - "Java"
@@ -25,8 +25,17 @@ papers:
 
 # Health Tracker App
 
+<video 
+  controls
+  className="w-full h-auto rounded-lg shadow-lg mb-8"
+  poster="/Assets/Projects/Professional/SSW-322-A-Group-3-Health-Tracker-App/Images/Use Case Diagram.png"
+>
+  <source src="/Assets/Projects/Professional/SSW-322-A-Group-3-Health-Tracker-App/Images/HealthTrackerApp_Video.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
 ## Project Overview
-The Health Tracker App is a comprehensive solution for monitoring personal health and fitness goals. Built with modern software engineering practices, the application provides users with tools to track their vital statistics, set health goals, and maintain a consistent fitness routine.
+The Health Tracker App is a comprehensive solution for monitoring personal health and fitness goals. Built with modern software engineering practices, the application provides users with tools to track their vital statistics, set health goals, and maintain a consistent fitness routine. It also has additional functionality to allow medical practioners monitoring access, to properly monitor their patients' progress and current health.
 
 ![Use Case Overview](/Assets/Projects/Professional/SSW-322-A-Group-3-Health-Tracker-App/Images/Use Case Diagram.png)
 System use cases showing the main functionality and user interactions.
@@ -53,7 +62,7 @@ Detailed class diagram showing the system's object model.
 - Goal achievement tracking
 - Custom workout plans
 
-![Activity Flow](/Assets/Projects/Professional/SSW-322-A-Group-3-Health-Tracker-App/Images/Activity Diagrams.jpg)
+![Class Diagram](/Assets/Projects/Professional/SSW-322-A-Group-3-Health-Tracker-App/Images/Activity Diagrams.png)
 Activity diagrams showing the main user workflows.
 
 ### System Interactions
@@ -69,11 +78,10 @@ Sequence diagram illustrating system interactions and data flow.
 ## Technical Implementation
 
 ### Backend Architecture
-- Spring Boot REST API
-- PostgreSQL database
-- JWT authentication
+- Fitbit REST API
+- Firebase database
+- Google authentication
 - Microservices design
-- Docker containerization
 
 ### Frontend Features
 - React-based UI

@@ -16,6 +16,7 @@ const ProjectCard = ({ project }) => {
 
   const isVideo = heroImage.endsWith('.mp4');
   const isFitnessApp = title === "Fitness Web Application";
+  const isHealthTrackerApp = title === "Health Tracker App";
 
   return (
     <Link href={`/projects/${slug}`}>
@@ -28,10 +29,10 @@ const ProjectCard = ({ project }) => {
       >
         <div className="relative">
           <div className="relative h-64 w-full">
-            {isFitnessApp && isVideo ? (
+            {(isFitnessApp || isHealthTrackerApp) && isVideo ? (
               <video
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                poster={`/Assets/Projects/${category}/${title.replace(/ /g, '')}/Images/1.png`}
+                poster={isHealthTrackerApp ? `/Assets/Projects/Professional/SSW-322-A-Group-3-Health-Tracker-App/Images/Use Case Diagram.png` : `/Assets/Projects/${category}/${title.replace(/ /g, '')}/Images/1.png`}
                 muted
                 loop
                 playsInline

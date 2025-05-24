@@ -1,18 +1,18 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import Layout from '../components/Layout';
 import ProjectCard from '../components/ProjectCard';
 import { getAllProjects } from '../utils/mdx';
-
-const filterOptions = ['All', 'Professional', 'Projects'];
+import { categoryOrder, projectTags } from '../data/projectTags';
 
 export default function Projects({ projects }) {
+  // State for active filter
   const [activeFilter, setActiveFilter] = useState('All');
-
+  const filterOptions = ['All', ...categoryOrder];
+  // Filtered projects based on selected tag
   const filteredProjects = activeFilter === 'All'
     ? projects
-    : projects.filter(project => project.category === activeFilter);
-
+    : projects.filter(p => (projectTags[p.slug] || []).includes(activeFilter));
   return (
     <Layout>
       <div className="max-w-7xl mx-auto">
@@ -30,59 +30,40 @@ export default function Projects({ projects }) {
           </p>
         </motion.div>
 
-        {/* Filter Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex justify-center space-x-4 mb-12"
-        >
-          {filterOptions.map((filter) => (
+        {/* Filter Buttons (old UI style) */}
+        <div className="flex flex-wrap justify-center gap-4 mb-8">
+          {filterOptions.map(option => (
             <button
-              key={filter}
-              onClick={() => setActiveFilter(filter)}
-              className={`px-6 py-2 rounded-full transition-colors ${
-                activeFilter === filter
+              key={option}
+              onClick={() => setActiveFilter(option)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                activeFilter === option
                   ? 'bg-primary text-white'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'
               }`}
             >
-              {filter}
+              {option}
             </button>
           ))}
-        </motion.div>
-
+        </div>
         {/* Projects Grid */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+          transition={{ duration: 0.5 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {filteredProjects.map((project, index) => (
+          {filteredProjects.map((project, idx) => (
             <motion.div
               key={project.slug}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
             >
               <ProjectCard project={project} />
             </motion.div>
           ))}
         </motion.div>
-
-        {/* No Projects Message */}
-        {filteredProjects.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-12"
-          >
-            <p className="text-gray-600 text-lg">
-              No projects found in this category.
-            </p>
-          </motion.div>
-        )}
       </div>
     </Layout>
   );
@@ -90,10 +71,15 @@ export default function Projects({ projects }) {
 
 export async function getStaticProps() {
   const projects = await getAllProjects();
+  // attach tags for filtering
+  const taggedProjects = projects.map(p => ({
+    ...p,
+    tags: projectTags[p.slug] || []
+  }));
   return {
     props: {
-      projects
+      projects: taggedProjects
     },
     revalidate: 3600
   };
-} 
+}

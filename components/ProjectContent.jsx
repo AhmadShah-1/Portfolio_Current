@@ -130,24 +130,40 @@ const ProjectContent = ({ project, content }) => {
   const assetImages = frontMatter.assetImages || [];
   const pdfUrl = frontMatter.pdfUrl || '';
   const notebookUrl = frontMatter.notebookUrl || '';
+  const isVideo = frontMatter.heroImage && frontMatter.heroImage.endsWith('.mp4');
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">
-      {/* Hero Image */}
+      {/* Hero Image or Video */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="relative h-[60vh] w-full rounded-lg overflow-hidden"
       >
-        <Image
-          src={frontMatter.heroImage}
-          alt={frontMatter.title}
-          fill
-          priority
-          style={{ objectFit: 'contain' }}
-          className="rounded-lg"
-        />
+        {isVideo ? (
+          <video
+            className="w-full h-full object-contain rounded-lg"
+            controls
+            poster={
+              frontMatter.title === "Health Tracker App" 
+                ? "/Assets/Projects/Professional/SSW-322-A-Group-3-Health-Tracker-App/Images/Use Case Diagram.png"
+                : null
+            }
+          >
+            <source src={frontMatter.heroImage} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        ) : (
+          <Image
+            src={frontMatter.heroImage}
+            alt={frontMatter.title}
+            fill
+            priority
+            style={{ objectFit: 'contain' }}
+            className="rounded-lg"
+          />
+        )}
       </motion.div>
 
       {/* Project Title and Category */}
