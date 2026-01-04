@@ -1,0 +1,77 @@
+---
+title: "Ahmad Careers"
+category: "Projects"
+heroImage: "/Assets/Projects/Personal/AhmadCareers/Images/Home1.png"
+description: "Ahmad Careers is a Flask-based job board web application that displays job listings from a MySQL database and allows candidates to submit applications, built with SQLAlchemy, Bootstrap, Jinja2 templating, and deployed on Render using Gunicorn."
+technologies:
+  - "Python"
+  - "Flask"
+  - "React"
+  - "MySQL"
+  - "REST API"
+  - "Bootstrap"
+galleryImages: [
+  "/Assets/Projects/Personal/AhmadCareers/Images/Home1.png",
+  "/Assets/Projects/Personal/AhmadCareers/Images/Home2.png",
+  "/Assets/Projects/Personal/AhmadCareers/Images/Application1.png",
+  "/Assets/Projects/Personal/AhmadCareers/Images/sql1.png"
+]
+links:
+  github: "https://github.com/AhmadShah-1/ahmad-careers-website"
+---
+
+# Ahmad Careers
+
+## Project Overview
+You can access the project website at: https://ahmad-careers.onrender.com/
+This is a job board web application for Ahmad Careers built with Flask that displays job listings and allows candidates to submit applications. The application uses a MySQL database hosted on panel.filess.io to store job postings (including titles, locations, salaries, responsibilities, and requirements) and applicant information (full name, email, LinkedIn profile, education, work experience, and resume URL). The frontend uses Bootstrap for responsive styling and Jinja2 templating for dynamic content rendering, with separate pages for the job listing homepage, individual job detail pages, and an application submission form. The backend uses SQLAlchemy with PyMySQL for database operations, implements connection pooling to manage database connections efficiently, and includes RESTful API endpoints that return job data in JSON format. The application is deployed on Render using Gunicorn as the WSGI server, with environment variables managed through python-dotenv for secure configuration of database connection strings and other sensitive settings.
+
+## Pages
+
+### Home Page
+The home page depicts some information on the site, along with a list of open positions, populated from a MySQL database on Panel.filess.io.
+![Home Page](/Assets/Projects/Personal/AhmadCareers/Images/Home1.png)
+![Home Page](/Assets/Projects/Personal/AhmadCareers/Images/Home2.png)
+
+
+The application page displays information about the job role, and upon submission updates the database with the user's request.
+![Application Page](/Assets/Projects/Personal/AhmadCareers/Images/Application1.png)
+
+### System Interactions
+- Job listing retrieval from database
+- Application form submission
+- Database connection pooling
+- RESTful API endpoints
+- Secure environment variable management
+
+## Technical Implementation
+
+### Backend Architecture
+- Flask web framework
+- MySQL database (panel.filess.io)
+- SQLAlchemy ORM with connection pooling
+- PyMySQL database driver
+- Gunicorn WSGI server
+- Environment-based configuration
+
+### Frontend Features
+- Bootstrap-responsive UI
+- Jinja2 templating engine
+- Dynamic job listing pages
+- Application submission forms
+- Job detail pages with formatted content
+- Modular template components (nav, footer, banner)
+
+## Future Developments
+Planned enhancements include:
+- User authentication and admin dashboard
+- Application status tracking
+- Email notifications for applicants
+- Advanced job search and filtering
+- Resume file upload functionality
+- Analytics dashboard for job postings
+
+
+## Project Repository
+
+You can find the full project on [GitHub](https://github.com/AhmadShah-1/ahmad-careers-website).

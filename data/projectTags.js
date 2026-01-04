@@ -17,10 +17,11 @@ export const projectTags = {
   "arduino-based-redundant-transmission": ["Professional", "Hardware", "Electronics"],
   "c-all": ["Professional", "App Development", "Electronics"],
   "dreus-project-nsf": ["Professional", "Machine Learning"],
-  "fitness-web-application": ["Web Development"], // assign tags (e.g. "Machine Learning", "Hardware", ...)
+  "fitness-web-application": ["Personal", "Web Development"], // assign tags (e.g. "Machine Learning", "Hardware", ...)
   "health-tracker-app": ["Professional", "Web Development", "App Development"],
   "lidar-robot": ["Professional", "Hardware", "Electronics"],
-  "real-estate-prediction-nyc": ["Machine Learning"],
-  "smart-home-automation": ["Web Development"],
-  "weather-machine": ["Hardware", "Electronics"]
+  "real-estate-prediction-nyc": ["Personal", "Machine Learning"],
+  "smart-home-automation": ["Personal", "Web Development"],
+  "weather-machine": ["Hardware", "Electronics"],
+  "ahmad-careers": ["Personal", "Web Development", "Flask", "MySQL", "Bootstrap", "Jinja2"]
 };
