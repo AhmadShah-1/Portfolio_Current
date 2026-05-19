@@ -2,7 +2,6 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
-import remarkGfm from 'remark-gfm';
 
 const projectsDirectory = path.join(process.cwd(), 'content/projects');
 
@@ -15,9 +14,7 @@ export async function getProjectData(slug) {
 
   // Use next-mdx-remote to serialize the content
   const mdxSource = await serialize(content, {
-    mdxOptions: {
-      remarkPlugins: [[remarkGfm]],
-    },
+    mdxOptions: {},
   });
 
   return {

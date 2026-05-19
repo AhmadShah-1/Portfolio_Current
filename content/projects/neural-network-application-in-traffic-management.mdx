@@ -1,0 +1,99 @@
+---
+title: "Neural Network Application in Traffic Management"
+category: "Professional"
+heroImage: "/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Images/4B.png"
+description: "A reinforcement-learning traffic signal controller that uses a Deep Q-Network to adapt phase selection and green-light duration at a simulated four-way intersection."
+pdfUrl: "/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Papers/Final__Traffic_Neural_Network.pdf"
+githubUrl: "https://github.com/AhmadShah-1/Neural-Network-Application-in-Traffic-Management-CPE-593-WS-"
+technologies:
+  - "Deep Q-Network"
+  - "Reinforcement Learning"
+  - "Python"
+  - "PyTorch"
+  - "Pygame"
+  - "Traffic Simulation"
+galleryImages: [
+  "/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Images/1.png",
+  "/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Images/3.png",
+  "/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Images/4A.png",
+  "/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Images/4B.png",
+  "/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Images/4C.png",
+  "/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Images/8 (1).png",
+  "/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Images/training_curve_updated.png",
+  "/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Images/regime_bars.png",
+  "/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Images/phase_usage.png",
+  "/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Images/scenario_bars.png",
+  "/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Images/grid_bars.png"
+]
+papers:
+  - name: "Final Traffic Neural Network Paper"
+    url: "/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Papers/Final__Traffic_Neural_Network.pdf"
+  - name: "Traffic Management Presentation Slides"
+    url: "/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Papers/Slides - Neural Network Application in Traffic Management.pdf"
+---
+
+# Neural Network Application in Traffic Management
+
+## Introduction
+
+This project explores how reinforcement learning can improve signal timing at a simulated four-way intersection. Instead of following a fixed cycle, the controller observes queue lengths, cumulative waits, the active phase, and the time spent in that phase before selecting the next signal action.
+
+The system uses a Deep Q-Network trained over 1,000 episodes. Over time, the policy learns how to reduce congestion, lower waiting time, and make better use of green-light duration than a static controller.
+
+![Traffic State Overview](/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Images/1.png)
+
+## System Architecture
+
+The project is built around an environment model, a neural-network controller, and a simulation layer for testing and visualization. The environment represents a four-direction intersection with separate left, straight, and right lanes on each approach.
+
+The agent receives a 27-dimensional state vector that combines per-lane queue information, accumulated waits, the current signal phase, elapsed phase time, and the previous duration. That state is used to estimate which phase-duration combination should be applied next.
+
+![Model Output Selection](/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Images/3.png)
+
+## Learning and Control Design
+
+The Deep Q-Network uses two hidden layers with ReLU activations. Its action space includes both the selected traffic phase and the selected green duration, allowing the model to learn timing decisions instead of only movement selection.
+
+Training uses epsilon-greedy exploration, Adam optimization, and an experience replay buffer. The reward function encourages vehicle throughput while penalizing long waits, heavy queues, and inefficiently long green periods.
+
+## Visual Simulation
+
+The project includes a live visualization tool that shows queue counts, active phases, and the model decision at each step. This makes it easier to inspect how the controller responds to changing traffic conditions and how those decisions affect the intersection state.
+
+![Intersection Visualizer](/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Images/4A.png)
+
+![Decision State](/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Images/4B.png)
+
+![Post-Decision Result](/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Images/4C.png)
+
+## Results
+
+Training reward improved from roughly minus 3000 in the early episodes to under minus 900 by episode 1000. Even with high variance from random vehicle arrivals, the moving average shows a clear improvement in controller quality over time.
+
+![Training Reward Curve](/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Images/training_curve_updated.png)
+
+The trained controller was then compared against fixed-time control, max-pressure control, and Webster's method. The DQN produced the best overall balance between keeping wait times low and limiting final queue growth, even when another baseline occasionally passed more total vehicles.
+
+![Traffic Regime Comparison](/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Images/regime_bars.png)
+
+![Phase Usage by Controller](/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Images/phase_usage.png)
+
+## Scenario Analysis
+
+The controller was also tested on several targeted scenarios such as balanced traffic, directional surges, and left-turn-heavy conditions. These tests helped expose where the policy generalizes well and where it still struggles.
+
+One of the main limitations appears in left-turn-heavy cases. Because the state representation does not always preserve enough lane-specific detail, the model can sometimes favor a through phase when a protected left turn would be more effective.
+
+![Controlled Scenario Results](/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Images/scenario_bars.png)
+
+## Network-Level Generalization
+
+To test generalization, the same trained policy was deployed across a connected 2 by 2 grid of intersections without retraining. Each node acted using only local information while still influencing neighboring intersections through propagated traffic flow.
+
+This experiment showed that the single-intersection controller retained useful behavior beyond its original training setup while also revealing room for stronger network-level coordination.
+
+![Grid Network Evaluation](/Assets/Projects/Professional/Neural-Network-Application-in-Traffic-Management/Images/grid_bars.png)
+
+## Takeaways
+
+This work shows that a compact DQN can learn an adaptive traffic-control policy that meaningfully reduces congestion and wait time in a simulated urban intersection. The most important next step is improving the state representation so turning behavior is preserved more explicitly at the lane level, especially for left-turn-heavy cases.

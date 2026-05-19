@@ -64,7 +64,6 @@ export default function Home() {
                 src="/Assets/AboutMe/Images/PhotoOfMyself.jpg"
                 alt="Ahmad Shah"
                 fill
-                priority
                 sizes="(max-width: 768px) 100vw, 50vw"
                 style={{ objectFit: 'cover' }}
                 className="rounded-lg"

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { MDXRemote } from 'next-mdx-remote';
 import ImageGallery from './ImageGallery';
 import MDXImage from './MDXImage';
-import { useState } from 'react';
+import { Children, isValidElement, useState } from 'react';
 
 // PDF and Jupyter Notebook viewer components
 const PDFViewer = ({ file }) => (
@@ -110,11 +110,25 @@ const DocumentTabs = ({ pdfFile, notebookFile }) => {
 };
 
 // Custom MDX components mapping
+const MdxParagraph = ({ children, ...props }) => {
+  const childArray = Children.toArray(children);
+
+  if (
+    childArray.length === 1 &&
+    isValidElement(childArray[0]) &&
+    (childArray[0].type === 'img' || childArray[0].type === MDXImage)
+  ) {
+    return <div className="mb-4" {...props}>{children}</div>;
+  }
+
+  return <p className="mb-4 text-lg" {...props}>{children}</p>;
+};
+
 const mdxComponents = {
   h1: (props) => <h1 className="text-4xl font-bold my-4" {...props} />,
   h2: (props) => <h2 className="text-3xl font-bold my-3" {...props} />,
   h3: (props) => <h3 className="text-2xl font-bold my-2" {...props} />,
-  p: (props) => <p className="mb-4 text-lg" {...props} />,
+  p: MdxParagraph,
   ul: (props) => <ul className="list-disc ml-6 mb-4" {...props} />,
   li: (props) => <li className="mb-1" {...props} />,
   blockquote: (props) => <blockquote className="border-l-4 pl-4 italic text-gray-600 my-4" {...props} />,
@@ -159,7 +173,6 @@ const ProjectContent = ({ project, content }) => {
             src={frontMatter.heroImage}
             alt={frontMatter.title}
             fill
-            priority
             style={{ objectFit: 'contain' }}
             className="rounded-lg"
           />
@@ -259,7 +272,7 @@ const ProjectContent = ({ project, content }) => {
         </motion.div>
       )}
 
-      {/* Document Tabs for Real Estate Prediction project */}
+      {/* Document preview area */}
       {frontMatter.title === "Real Estate Prediction in NYC" && pdfUrl && notebookUrl && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -270,6 +283,18 @@ const ProjectContent = ({ project, content }) => {
             pdfFile={pdfUrl}
             notebookFile={notebookUrl}
           />
+        </motion.div>
+      )}
+
+      {frontMatter.title !== "Real Estate Prediction in NYC" && pdfUrl && !notebookUrl && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.35 }}
+          className="bg-gray-50 rounded-lg p-4 border border-gray-200"
+        >
+          <h2 className="text-xl font-bold text-gray-900 mb-3">Paper Preview</h2>
+          <PDFViewer file={pdfUrl} />
         </motion.div>
       )}
 
