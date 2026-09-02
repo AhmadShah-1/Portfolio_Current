@@ -8,8 +8,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#0070f3',
-        secondary: '#00040f',
+        primary: '#557000',
+        secondary: '#0b1513',
+        ink: '#0b1513',
+        canvas: '#f3f1e8',
+        accent: '#dfff62',
+        muted: '#65706d',
         dimWhite: 'rgba(255, 255, 255, 0.7)',
         dimBlue: 'rgba(9, 151, 124, 0.1)',
       },
@@ -19,4 +23,4 @@ module.exports = {
     },
   },
   plugins: [require('@tailwindcss/typography')],
-} 
+}

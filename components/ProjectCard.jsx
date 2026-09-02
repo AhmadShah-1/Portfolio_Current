@@ -1,101 +1,33 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import ImageCarousel from './ImageCarousel';
+import { ArrowUpRightIcon } from '@heroicons/react/24/outline';
 
-const ProjectCard = ({ project }) => {
-  const {
-    title,
-    description,
-    heroImage,
-    galleryImages,
-    technologies,
-    category,
-    slug
-  } = project;
-
-  const isVideo = heroImage.endsWith('.mp4');
-  const isFitnessApp = title === "Fitness Web Application";
-  const isHealthTrackerApp = title === "Health Tracker App";
-
-  return (
-    <Link href={`/projects/${slug}`}>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer group"
-      >
-        <div className="relative">
-          <div className="relative h-64 w-full">
-            {(isFitnessApp || isHealthTrackerApp) && isVideo ? (
-              <video
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                poster={isHealthTrackerApp ? `/Assets/Projects/Professional/SSW-322-A-Group-3-Health-Tracker-App/Images/Use Case Diagram.png` : `/Assets/Projects/${category}/${title.replace(/ /g, '')}/Images/1.png`}
-                muted
-                loop
-                playsInline
-                autoPlay
-              >
-                <source src={heroImage} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            ) : (
-              <div className="h-full">
-                {galleryImages && galleryImages.length > 0 ? (
-                  <ImageCarousel images={galleryImages} />
-                ) : (
-                  <Image
-                    src={heroImage}
-                    alt={title}
-                    fill
-                    style={{ objectFit: 'cover' }}
-                    className="group-hover:scale-105 transition-transform duration-300"
-                  />
-                )}
-              </div>
-            )}
-          </div>
-          <div className="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-sm z-10">
-            {category}
-          </div>
-        </div>
-
-        <div className="p-6">
-          <h3 className="text-2xl font-bold mb-2 text-gray-800 group-hover:text-primary transition-colors">
-            {title}
-          </h3>
-          <p className="text-gray-600 mb-4 line-clamp-2">{description}</p>
-
-          {technologies && technologies.length > 0 && (
-            <div className="mb-4">
-              <h4 className="text-sm font-semibold text-gray-700 mb-2">Technologies:</h4>
-              <div className="flex flex-wrap gap-2">
-                {technologies.slice(0, 3).map((tech, index) => (
-                  <span
-                    key={index}
-                    className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
-                  >
-                    {tech}
-                  </span>
-                ))}
-                {technologies.length > 3 && (
-                  <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
-                    +{technologies.length - 3} more
-                  </span>
-                )}
-              </div>
-            </div>
-          )}
-
-          <div className="flex items-center justify-between mt-4">
-            <span className="text-primary font-medium">View Details →</span>
-          </div>
-        </div>
-      </motion.div>
-    </Link>
-  );
+const videoPosters = {
+  'health-tracker-app': '/Assets/Projects/Professional/SSW-322-A-Group-3-Health-Tracker-App/Images/Use Case Diagram.png',
+  'fitness-web-application': '/Assets/Projects/Personal/FitnessWebApplication/Images/1.png',
 };
 
-export default ProjectCard; 
+export default function ProjectCard({ project, priority = false }) {
+  const image = project.heroImage?.endsWith('.mp4') ? videoPosters[project.slug] : project.heroImage;
+  const label = project.tags?.[0] || project.category || 'Project';
+
+  return (
+    <motion.article whileHover={{ y: -5 }} transition={{ duration: .2 }} className="group h-full overflow-hidden rounded-[1.5rem] border border-ink/10 bg-white/60">
+      <Link href={`/projects/${project.slug}`} className="flex h-full flex-col" aria-label={`View ${project.title}`}>
+        <div className="project-media relative aspect-[4/3] overflow-hidden bg-white">
+          {image && <Image src={image} alt="" fill priority={priority} sizes="(max-width: 1024px) 100vw, 33vw" className="object-contain p-3 transition duration-500 group-hover:scale-[1.035]" />}
+          <span className="absolute left-4 top-4 z-10 rounded-full bg-ink px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.12em] text-accent">{label}</span>
+        </div>
+        <div className="flex flex-1 flex-col p-6">
+          <h3 className="text-xl font-semibold leading-tight tracking-[-0.035em] sm:text-2xl">{project.title}</h3>
+          <p className="mt-3 line-clamp-3 text-sm leading-6 text-muted">{project.description}</p>
+          <div className="mt-auto flex items-end justify-between gap-4 pt-6">
+            <div className="flex flex-wrap gap-1.5">{project.technologies?.slice(0, 2).map((tech) => <span key={tech} className="rounded-full border border-ink/10 px-2.5 py-1 text-[10px] font-medium text-muted">{tech}</span>)}</div>
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-ink text-white transition group-hover:bg-accent group-hover:text-ink"><ArrowUpRightIcon className="h-4 w-4" /></span>
+          </div>
+        </div>
+      </Link>
+    </motion.article>
+  );
+}

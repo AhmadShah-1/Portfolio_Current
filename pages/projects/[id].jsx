@@ -19,11 +19,11 @@ export default function ProjectDetail({ project }) {
   }
 
   return (
-    <Layout>
-      <div className="max-w-7xl mx-auto px-4 py-8">
+    <Layout title={project.frontMatter.title} description={project.frontMatter.description}>
+      <div className="page-shell py-8">
         <Link
           href="/projects"
-          className="text-primary hover:text-primary/80 mb-8 inline-block"
+          className="mb-5 inline-block text-sm font-medium text-muted transition hover:text-ink"
         >
           ← Back to Projects
         </Link>
@@ -49,4 +49,4 @@ export async function getStaticProps({ params }) {
     },
     revalidate: 3600
   };
-} 
+}

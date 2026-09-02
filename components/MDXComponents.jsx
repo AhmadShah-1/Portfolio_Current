@@ -1,13 +1,7 @@
 import React from 'react';
-import DocumentTabs from './DocumentTabs';
-import PDFViewer from './PDFViewer';
-import NotebookViewer from './NotebookViewer';
 import Image from 'next/image';
 
 const MDXComponents = {
-  DocumentTabs,
-  PDFViewer,
-  NotebookViewer,
   // Override the default img tag to use Next.js Image when possible
   img: (props) => {
     const { src, alt, width, height } = props;
@@ -19,4 +13,4 @@ const MDXComponents = {
   },
 };
 
-export default MDXComponents; 
+export default MDXComponents;

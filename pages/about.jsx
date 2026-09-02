@@ -1,385 +1,108 @@
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { ArrowDownTrayIcon, ArrowUpRightIcon } from '@heroicons/react/24/outline';
 import Layout from '../components/Layout';
-import { useState, useEffect, useRef } from 'react';
 
-const skills = [
+const experience = [
   {
-    category: 'Programming Languages',
-    items: ['JavaScript', 'Python', 'Java', 'C++', 'TypeScript']
+    period: 'Aug 2026 — Present',
+    role: 'Software Engineer — AI Systems & Full-Stack',
+    company: 'Stratus · New York, NY',
+    summary: 'Building project budgeting, permission-aware knowledge, and voice-driven time-entry products with PostgreSQL, hybrid retrieval, Sentry, Docker, and production infrastructure.',
   },
   {
-    category: 'Web Technologies',
-    items: ['React', 'Next.js', 'Node.js', 'Express', 'HTML/CSS', 'TailwindCSS']
+    period: 'Sep 2025 — Aug 2026',
+    role: 'Software Developer Intern',
+    company: 'PVEDI · New York, NY',
+    summary: 'Built an Azure-based RAG pipeline over NYC structural codes, accelerated compliant report production by 73%, and developed CRM and service-discovery products for AEC teams.',
   },
   {
-    category: 'Tools & Platforms',
-    items: ['Git', 'Docker', 'AWS', 'Linux', 'MongoDB', 'PostgreSQL']
+    period: 'Jun 2025 — Sep 2025',
+    role: 'Systems Engineering Intern',
+    company: 'Rees Scientific · Trenton, NJ',
+    summary: 'Created sensor anomaly detection with Azure Stream Analytics and ADTK, automated technical documentation, and unified legacy ERP data in MongoDB.',
   },
   {
-    category: 'Other Skills',
-    items: ['Agile Methodologies', 'System Design', 'Technical Writing', 'Problem Solving']
-  }
+    period: 'Jun 2024 — Sep 2024',
+    role: 'Machine Learning Intern',
+    company: 'National Science Foundation · Miami, FL',
+    summary: 'Integrated real-time detection, tracking, and facial recognition for drone operations, achieving 92% detection accuracy and training reinforcement-learning models in AirSim.',
+  },
+  {
+    period: 'Sep 2023 — May 2024',
+    role: 'Embedded & Software Systems Engineer Intern',
+    company: 'Stevens Institute of Technology · Hoboken, NJ',
+    summary: 'Engineered a modular C++/Python offshore telemetry platform with four interchangeable IoT sensors and RF data acquisition over two kilometers.',
+  },
+];
+
+const skillGroups = [
+  ['Languages', ['Python', 'JavaScript', 'SQL', 'Java', 'C / C++', 'Swift', 'HTML / CSS', 'MATLAB']],
+  ['AI & data', ['PyTorch', 'TensorFlow', 'RAG', 'Computer Vision', 'Hugging Face', 'Pandas', 'Vector Search']],
+  ['Product stack', ['React', 'Flask', 'PostgreSQL', 'MongoDB', 'Docker', 'Azure', 'AWS', 'DigitalOcean']],
 ];
 
 export default function About() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-  
-  const [formStatus, setFormStatus] = useState({
-    submitted: false,
-    success: false,
-    message: ''
-  });
-  
-  const formRef = useRef(null);
-  
-  // Initialize EmailJS when component mounts
-  useEffect(() => {
-    // Load EmailJS SDK
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-    script.async = true;
-    document.body.appendChild(script);
-    
-    script.onload = () => {
-      // Initialize EmailJS with your User ID
-      window.emailjs.init('czDSnMGqNfHFs5d_s');
-    };
-    
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setFormStatus({ submitted: true, success: false, message: 'Sending...' });
-    
-    try {
-      // First try the server API route
-      console.log('Trying server-side email sending...');
-      
-      const serverResponse = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-      
-      console.log('Server API response status:', serverResponse.status);
-      const serverData = await serverResponse.json();
-      
-      if (serverResponse.ok) {
-        // Server-side approach worked
-        setFormData({ name: '', email: '', message: '' });
-        setFormStatus({
-          submitted: false,
-          success: true,
-          message: 'Your message has been sent successfully!'
-        });
-        return; // Exit early if successful
-      }
-      
-      console.log('Server-side approach failed, trying client-side...');
-      
-      // If server approach fails, try client-side approach like in the playground
-      if (window.emailjs) {
-        const templateParams = {
-          title: `Contact from ${formData.name}`,
-          name: formData.name,
-          time: new Date().toLocaleString(),
-          message: formData.message,
-          email: formData.email
-        };
-        
-        const clientResponse = await window.emailjs.send(
-          'default_service',
-          'template_0hxnkri',
-          templateParams
-        );
-        
-        console.log('Client-side EmailJS response:', clientResponse);
-        
-        if (clientResponse.status === 200) {
-          setFormData({ name: '', email: '', message: '' });
-          setFormStatus({
-            submitted: false,
-            success: true,
-            message: 'Your message has been sent successfully using client-side EmailJS!'
-          });
-          return;
-        }
-      }
-      
-      throw new Error('Both server-side and client-side approaches failed');
-    } catch (error) {
-      console.error('Error sending email:', error);
-      
-      // Fallback to mailto: if everything else fails
-      const fallbackMessage = 'Email sending failed. Would you like to open your email client instead?';
-      
-      if (window.confirm(fallbackMessage)) {
-        const subject = `Contact from ${formData.name}`;
-        const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
-        const mailtoLink = `mailto:ahmadsyedshah123@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        window.location.href = mailtoLink;
-        
-        setFormStatus({
-          submitted: false,
-          success: true,
-          message: 'Opening your email client...'
-        });
-      } else {
-        setFormStatus({
-          submitted: false,
-          success: false,
-          message: `Error: ${error.message}. Please email me directly at ahmadsyedshah123@gmail.com`
-        });
-      }
-    }
-  };
-
   return (
-    <Layout>
-      <div className="max-w-4xl mx-auto">
-        {/* Introduction */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-16"
-        >
-          <h1 className="text-4xl font-bold text-gray-900 mb-6">About Me</h1>
-          <p className="text-lg text-gray-600 mb-6">
-            Hello! I'm Ahmad Shah, a senior software engineer and student at Stevens Institute of Technology,
-            where I'm pursuing a degree in Software Engineering with a minor in Computer Science.
-          </p>
-          <p className="text-lg text-gray-600 mb-6">
-            My passion lies in creating innovative solutions to complex problems and contributing to
-            meaningful projects that make a difference. With a strong foundation in both theoretical
-            computer science and practical software engineering, I bring a unique perspective to every
-            project I work on.
-          </p>
-        </motion.section>
-
-        {/* Education */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-16"
-        >
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Education</h2>
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-bold text-gray-800">Stevens Institute of Technology</h3>
-            <p className="text-gray-600">Bachelor of Science in Software Engineering</p>
-            <p className="text-gray-600">Minor in Computer Science</p>
+    <Layout title="About" description="About Ahmad Shah, a New York software engineer building AI systems and full-stack software.">
+      <section className="page-shell py-14 sm:py-20">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="grid gap-10 lg:grid-cols-[1.1fr_.9fr] lg:items-end">
+          <div>
+            <p className="eyebrow text-primary">A little context</p>
+            <h1 className="page-title mt-5">Engineer by training. Builder by instinct.</h1>
           </div>
-        </motion.section>
+          <p className="max-w-xl text-lg leading-8 text-muted">
+            I enjoy taking complex, ambiguous systems and turning them into software people can trust. My work spans AI retrieval, data platforms, computer vision, software engineering, and connected hardware.
+          </p>
+        </motion.div>
 
-        {/* Resume & Professional Links */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="mb-16"
-        >
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Resume & Professional Links</h2>
-
-          {/* Combined Resume and Professional Network Section */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-bold text-gray-800 mb-4">Resume</h3>
-            <div className="flex flex-wrap gap-4 mb-8">
-              <a 
-                href="/Assets/AboutMe/Resumes/Shah, Syed, Stevens Institute of Technology.pdf" 
-                download
-                className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors flex items-center"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-                Download Resume
-              </a>
-              <a 
-                href="/Assets/AboutMe/Resumes/Shah, Syed, Stevens Institute of Technology.pdf" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="border border-blue-500 text-blue-500 px-6 py-3 rounded-lg hover:bg-blue-50 transition-colors flex items-center"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                  <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
-                </svg>
-                View Resume
-              </a>
-            </div>
-
-            <h3 className="text-xl font-bold text-gray-800 mb-4">Professional Network</h3>
+        <div className="mt-14 grid gap-4 md:grid-cols-[1.4fr_.6fr]">
+          <div className="relative min-h-[380px] overflow-hidden rounded-[1.75rem] sm:min-h-[520px]">
+            <Image src="/Assets/AboutMe/Images/PhotoOfMyself.jpg" alt="Ahmad overlooking a city from a mountain" fill priority sizes="(max-width: 768px) 100vw, 70vw" className="object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/65 via-transparent to-transparent" />
+            <p className="absolute bottom-6 left-6 max-w-sm text-sm leading-6 text-white/80">Curiosity travels well. The same instinct that pulls me up a mountain keeps me digging into hard technical problems.</p>
+          </div>
+          <div className="flex flex-col justify-between rounded-[1.75rem] bg-accent p-7 sm:p-9">
+            <p className="eyebrow">Current chapter</p>
             <div>
-              <a 
-                href="https://www.linkedin.com/in/ahmad-shah-674989224/" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-[#0077b5] text-white px-6 py-3 rounded-lg hover:bg-[#005e93] transition-colors inline-flex items-center"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                </svg>
-                Connect on LinkedIn
-              </a>
+              <p className="text-3xl font-semibold tracking-[-0.04em]">New York City</p>
+              <p className="mt-3 leading-7 text-ink/65">Building AI-enabled products at Stratus after completing an M.Eng. in Applied AI.</p>
             </div>
           </div>
-        </motion.section>
+        </div>
+      </section>
 
-        {/* Skills */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mb-16"
-        >
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Skills & Expertise</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {skills.map((skillGroup, index) => (
-              <motion.div
-                key={skillGroup.category}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 * index }}
-                className="bg-white p-6 rounded-lg shadow-md"
-              >
-                <h3 className="text-xl font-bold text-gray-800 mb-4">
-                  {skillGroup.category}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {skillGroup.items.map((skill) => (
-                    <span
-                      key={skill}
-                      className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
+      <section className="page-shell section-border py-20 sm:py-28">
+        <div className="grid gap-10 lg:grid-cols-[.35fr_.65fr]">
+          <div><p className="eyebrow text-primary">Experience</p><h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em]">The work behind the work.</h2></div>
+          <div>
+            {experience.map((item, index) => (
+              <motion.article key={item.role} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-80px' }} transition={{ delay: index * .04 }} className="grid gap-3 border-b border-ink/15 py-7 first:pt-0 sm:grid-cols-[160px_1fr]">
+                <p className="font-mono text-xs text-muted">{item.period}</p>
+                <div><h3 className="text-lg font-semibold">{item.role}</h3><p className="mt-1 text-sm font-medium text-primary">{item.company}</p><p className="mt-3 max-w-2xl text-sm leading-6 text-muted">{item.summary}</p></div>
+              </motion.article>
             ))}
           </div>
-        </motion.section>
+        </div>
+      </section>
 
-        {/* Contact Information */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="mb-16"
-        >
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h2>
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Contact Form */}
-              <div>
-                <h3 className="text-xl font-bold text-gray-800 mb-4">Send Me a Message</h3>
-                
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={4}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    />
-                  </div>
-                  
-                  <button
-                    type="submit"
-                    disabled={formStatus.submitted}
-                    className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors focus:ring-2 focus:ring-blue-300 focus:outline-none"
-                  >
-                    {formStatus.submitted ? 'Sending...' : 'Send Message'}
-                  </button>
-                  
-                  {formStatus.message && (
-                    <p className={`text-sm ${formStatus.success ? 'text-green-600' : 'text-red-600'}`}>
-                      {formStatus.message}
-                    </p>
-                  )}
-                </form>
-              </div>
-              
-              {/* Contact Details */}
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">Contact Details</h3>
-                <div>
-                  <h4 className="text-lg font-semibold text-gray-800">Email</h4>
-                  <a
-                    href="mailto:ahmadsyedshah123@gmail.com"
-                    className="text-blue-500 hover:text-blue-600 transition-colors"
-                  >
-                    ahmadsyedshah123@gmail.com
-                  </a>
-                </div>
-                <div>
-                  <h4 className="text-lg font-semibold text-gray-800">Phone</h4>
-                  <a
-                    href="tel:2019894743"
-                    className="text-blue-500 hover:text-blue-600 transition-colors"
-                  >
-                    (201) 989-4743
-                  </a>
-                </div>
-              </div>
+      <section className="bg-ink py-20 text-white sm:py-28">
+        <div className="page-shell">
+          <div className="grid gap-12 lg:grid-cols-[.4fr_.6fr]">
+            <div><p className="eyebrow text-accent">Toolkit</p><h2 className="mt-4 text-4xl font-semibold tracking-[-0.05em]">Broad enough to connect the dots.</h2></div>
+            <div className="space-y-9">
+              {skillGroups.map(([name, skills]) => <div key={name}><p className="mb-4 text-sm text-white/45">{name}</p><div className="flex flex-wrap gap-2">{skills.map((skill) => <span key={skill} className="rounded-full border border-white/15 px-4 py-2 text-sm text-white/80">{skill}</span>)}</div></div>)}
             </div>
           </div>
-        </motion.section>
-      </div>
+        </div>
+      </section>
+
+      <section className="page-shell py-20 sm:py-28">
+        <div className="grid gap-5 lg:grid-cols-2">
+          <div className="surface p-7 sm:p-10"><p className="eyebrow text-primary">Education</p><h2 className="mt-6 text-2xl font-semibold">Stevens Institute of Technology</h2><div className="mt-7 space-y-6"><div><p className="font-medium">M.Eng. Applied Artificial Intelligence</p><p className="mt-1 text-sm text-muted">Data Engineering concentration · 3.92 GPA · 2026</p></div><div><p className="font-medium">B.E. Software Engineering</p><p className="mt-1 text-sm text-muted">Computer Science minor · 3.8 GPA · 2025</p></div></div></div>
+          <div className="rounded-[1.5rem] bg-white p-7 sm:p-10"><p className="eyebrow text-primary">Beyond the coursework</p><h2 className="mt-6 text-2xl font-semibold">Built in the real world.</h2><p className="mt-4 leading-7 text-muted">Ansary Entrepreneurship Competition finalist, U.S. DOE Marine Energy Collegiate Competition presenter, and recipient of certifications from NVIDIA, Microsoft, LinkedIn, and Autodesk.</p><div className="mt-8 flex flex-wrap gap-3"><a href="/Assets/AboutMe/Resumes/Shah, Syed, Stevens Institute of Technology.pdf" download className="button-dark">Download résumé <ArrowDownTrayIcon className="h-4 w-4" /></a><a href="https://www.linkedin.com/in/ahmadshah12/" target="_blank" rel="noreferrer" className="button-secondary">LinkedIn <ArrowUpRightIcon className="h-4 w-4" /></a></div></div>
+        </div>
+      </section>
     </Layout>
   );
-} 
+}

@@ -25,7 +25,10 @@ export async function getProjectData(slug) {
 }
 
 export function getAllProjectSlugs() {
-  const fileNames = fs.readdirSync(projectsDirectory);
+  const fileNames = fs.readdirSync(projectsDirectory).filter((fileName) => {
+    const { data } = matter(fs.readFileSync(path.join(projectsDirectory, fileName), 'utf8'));
+    return !data.hidden;
+  });
   return fileNames.map((fileName) => {
     return {
       params: {
@@ -53,5 +56,5 @@ export async function getAllProjects() {
     })
   );
 
-  return allProjectsData;
-} 
+  return allProjectsData.filter((project) => !project.hidden);
+}
