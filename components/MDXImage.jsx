@@ -15,7 +15,7 @@ const MDXImage = ({ src, alt }) => {
           alt={alt || 'Project image'}
           fill
           style={{ objectFit: 'contain' }}
-          className={dimensions ? '' : 'p-3'}
+          className={dimensions ? 'm-0' : 'm-0 p-3'}
           sizes="(max-width: 1024px) 100vw, 896px"
         />
       </div>
