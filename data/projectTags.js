@@ -14,4 +14,5 @@ export const projectTags = {
   'real-estate-prediction-nyc': ['AI / ML', 'Research'],
   'weather-machine': ['Embedded'],
   'ahmad-careers': ['Product'],
+  'mercury': ['AI / ML', 'Product'],
 };
