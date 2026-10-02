@@ -5,6 +5,7 @@ import { MDXRemote } from 'next-mdx-remote';
 import { ArrowDownTrayIcon, ArrowUpRightIcon } from '@heroicons/react/24/outline';
 import ImageGallery from './ImageGallery';
 import MDXImage from './MDXImage';
+import { getImageDimensions } from '../data/imageDimensions';
 
 const videoPosters = {
   'Health Tracker App': '/Assets/Projects/Professional/SSW-322-A-Group-3-Health-Tracker-App/Images/Use Case Diagram.png',
@@ -27,6 +28,7 @@ const mdxComponents = {
 export default function ProjectContent({ project, content }) {
   const { frontMatter } = project;
   const isVideo = frontMatter.heroImage?.endsWith('.mp4');
+  const heroDimensions = !isVideo && getImageDimensions(frontMatter.heroImage);
   const githubUrl = frontMatter.githubUrl || frontMatter.links?.github;
   const papers = (frontMatter.papers || []).filter((paper) => paper.url);
   const externalLinks = Object.entries(frontMatter.links || {}).filter(([key, value]) => key !== 'github' && typeof value === 'string');
@@ -49,8 +51,14 @@ export default function ProjectContent({ project, content }) {
         </div>
       </motion.header>
 
-      <motion.div initial={{ opacity: 0, scale: .985 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: .08 }} className="relative aspect-[16/10] overflow-hidden rounded-[1.75rem] border border-ink/10 bg-white sm:aspect-[16/8]">
-        {isVideo ? <video className="h-full w-full object-contain" controls playsInline preload="metadata" poster={videoPosters[frontMatter.title]}><source src={frontMatter.heroImage} type="video/mp4" /></video> : <Image src={frontMatter.heroImage} alt={`${frontMatter.title} project preview`} fill priority sizes="100vw" className="object-contain p-3 sm:p-6" />}
+      <motion.div
+        initial={{ opacity: 0, scale: .985 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: .08 }}
+        className={`relative overflow-hidden rounded-[1.75rem] border border-ink/10 bg-white ${heroDimensions ? '' : 'aspect-[16/10] sm:aspect-[16/8]'}`}
+        style={heroDimensions ? { aspectRatio: `${heroDimensions.width} / ${heroDimensions.height}` } : undefined}
+      >
+        {isVideo ? <video className="h-full w-full object-contain" controls playsInline preload="metadata" poster={videoPosters[frontMatter.title]}><source src={frontMatter.heroImage} type="video/mp4" /></video> : <Image src={frontMatter.heroImage} alt={`${frontMatter.title} project preview`} fill priority sizes="100vw" className={heroDimensions ? 'object-contain' : 'object-contain p-3 sm:p-6'} />}
       </motion.div>
 
       <div className="mt-12 grid gap-10 lg:grid-cols-[.25fr_.75fr] sm:mt-16">

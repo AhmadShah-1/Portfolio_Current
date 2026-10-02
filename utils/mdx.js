@@ -56,5 +56,7 @@ export async function getAllProjects() {
     })
   );
 
-  return allProjectsData.filter((project) => !project.hidden);
+  return allProjectsData
+    .filter((project) => !project.hidden)
+    .sort((a, b) => (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER));
 }

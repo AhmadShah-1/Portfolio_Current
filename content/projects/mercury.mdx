@@ -1,6 +1,7 @@
 ---
 title: "Mercury"
 category: "Personal"
+order: 1
 heroImage: "/Assets/Projects/Personal/Mercury/Images/2.png"
 description: "A privacy-conscious AI workspace that organizes Gmail into user-controlled categories, summarizes conversations, and surfaces possible actions without acting on a user's behalf."
 technologies:
@@ -17,6 +18,8 @@ galleryImages: [
   "/Assets/Projects/Personal/Mercury/Images/3.png",
   "/Assets/Projects/Personal/Mercury/Images/4.png"
 ]
+links:
+  live app: "https://mercury-web-staging.mangodesert-9200cc52.centralus.azurecontainerapps.io/app"
 ---
 
 # Mercury
@@ -24,6 +27,10 @@ galleryImages: [
 ## A calmer, privacy-conscious intelligence layer for Gmail
 
 Mercury is a full-stack email organization workspace built to help people understand a crowded Gmail inbox without becoming another email client. It organizes recent conversations into personalized categories, writes clearly labeled AI summaries, and highlights possible actions such as reviewing, replying, paying, scheduling, or reading.
+
+[Open the live Mercury application](https://mercury-web-staging.mangodesert-9200cc52.centralus.azurecontainerapps.io/app) to explore the current Azure-hosted build.
+
+> **Staging access:** The public landing page is available to everyone, but Google sign-in is currently restricted to approved test users. The server sleeps when inactive to reduce hosting costs, so the first request may take up to one minute to start.
 
 The central product decision is restraint: **Mercury can help a user decide, but it cannot act on the user's behalf.** Gmail remains the source of truth for messages, labels, conversation membership, and unread state. Sending, replying, forwarding, deleting, archiving, and opening attachments all remain in Gmail.
 

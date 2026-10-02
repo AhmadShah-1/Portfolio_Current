@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import Image from 'next/image';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import ImageViewer from './ImageViewer';
+import { getImageDimensions } from '../data/imageDimensions';
 
 export default function ImageGallery({ images }) {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -33,12 +34,23 @@ export default function ImageGallery({ images }) {
         </div>
       </div>
       <div ref={scrollerRef} onScroll={updateCurrentImage} className="scrollbar-hide flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3">
-        {images.map((image, index) => (
-          <button key={`${image}-${index}`} type="button" onClick={() => setSelectedImage(image)} className="relative aspect-[4/3] w-[84vw] max-w-[430px] shrink-0 snap-start overflow-hidden rounded-2xl border border-ink/10 bg-white sm:w-[430px]" aria-label={`Open gallery image ${index + 1}`}>
-            <Image src={image} alt={`${index + 1} of ${images.length}`} fill sizes="(max-width: 640px) 84vw, 430px" className="object-contain p-3 transition duration-300 hover:scale-[1.02]" />
-            <span className="absolute bottom-3 right-3 rounded-full bg-ink/80 px-2.5 py-1 font-mono text-[10px] text-white">{String(index + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}</span>
-          </button>
-        ))}
+        {images.map((image, index) => {
+          const dimensions = getImageDimensions(image);
+
+          return (
+            <button
+              key={`${image}-${index}`}
+              type="button"
+              onClick={() => setSelectedImage(image)}
+              className={`relative w-[84vw] shrink-0 snap-start self-start overflow-hidden rounded-2xl border border-ink/10 bg-white ${dimensions ? 'max-w-[760px]' : 'aspect-[4/3] max-w-[430px] sm:w-[430px]'}`}
+              style={dimensions ? { aspectRatio: `${dimensions.width} / ${dimensions.height}` } : undefined}
+              aria-label={`Open gallery image ${index + 1}`}
+            >
+              <Image src={image} alt={`${index + 1} of ${images.length}`} fill sizes={dimensions ? '(max-width: 900px) 84vw, 760px' : '(max-width: 640px) 84vw, 430px'} className={`object-contain transition duration-300 hover:scale-[1.02] ${dimensions ? '' : 'p-3'}`} />
+              <span className="absolute bottom-3 right-3 rounded-full bg-ink/80 px-2.5 py-1 font-mono text-[10px] text-white">{String(index + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}</span>
+            </button>
+          );
+        })}
       </div>
       {selectedImage && <ImageViewer image={selectedImage} onClose={() => setSelectedImage(null)} />}
     </div>
